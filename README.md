@@ -32,40 +32,46 @@ An interactive, terminal-based railway reservation system built in Python (IDLE)
 
 The application connects to MySQL via `mysql-connector-python` and automatically creates the `railway` database along with three relational tables:
 
+```text
 users (User_Name [PK])
-│
-├──< bookings (Booking_ID [PK], User_Name [FK], Train_No [FK], PNR [UQ])
-│
+   │
+   ├──< bookings (Booking_ID [PK], User_Name [FK], Train_No [FK], PNR [UQ])
+   │
 trains (Train_No [PK])
+
+```
 
 ### Table Schemas
 
 #### `users`
+
 | Column | Type | Constraints |
-| :--- | :--- | :--- |
+| --- | --- | --- |
 | `User_Name` | VARCHAR(100) | PRIMARY KEY |
-| `First_Name` | VARCHAR(100) | |
-| `Last_Name` | VARCHAR(100) | |
-| `Password` | VARCHAR(50) | |
-| `Email_Id` | VARCHAR(50) | |
-| `Phone_No` | VARCHAR(20) | |
+| `First_Name` | VARCHAR(100) |  |
+| `Last_Name` | VARCHAR(100) |  |
+| `Password` | VARCHAR(50) |  |
+| `Email_Id` | VARCHAR(50) |  |
+| `Phone_No` | VARCHAR(20) |  |
 
 #### `trains`
+
 | Column | Type | Constraints |
-| :--- | :--- | :--- |
+| --- | --- | --- |
 | `Train_No` | INT | PRIMARY KEY |
-| `Train_Name` | VARCHAR(100) | |
-| `Source` | VARCHAR(100) | |
-| `Destination` | VARCHAR(100) | |
-| `Seats_Available` | INT | |
+| `Train_Name` | VARCHAR(100) |  |
+| `Source` | VARCHAR(100) |  |
+| `Destination` | VARCHAR(100) |  |
+| `Seats_Available` | INT |  |
 
 #### `bookings`
+
 | Column | Type | Constraints |
-| :--- | :--- | :--- |
+| --- | --- | --- |
 | `Booking_ID` | INT | AUTO_INCREMENT, PRIMARY KEY |
 | `User_Name` | VARCHAR(100) | FOREIGN KEY -> `users(User_Name)` |
 | `Train_No` | INT | FOREIGN KEY -> `trains(Train_No)` |
-| `Seats_Booked` | INT | |
+| `Seats_Booked` | INT |  |
 | `PNR` | VARCHAR(10) | UNIQUE |
 | `Booking_Time` | DATETIME | DEFAULT CURRENT_TIMESTAMP |
 
@@ -83,24 +89,40 @@ trains (Train_No [PK])
 ## Installation & Setup
 
 ### 1. Clone the Repository
-```bash
-git clone [https://github.com/vikrantkumar24/railway-reservation-system.git](https://github.com/vikrantkumar24/railway-reservation-system.git)
-cd railway-reservation-system
-2. Install Dependencies
-Bash
-pip install mysql-connector-python
-3. Ensure MySQL Server is Running
-Make sure your local MySQL service is running. The script executes CREATE DATABASE IF NOT EXISTS railway and initializes the tables automatically upon connection.
 
-4. Run the Application
+```bash
+git clone https://github.com/vikrantkumar24/railway-reservation-system.git
+cd railway-reservation-system
+
+```
+
+### 2. Install Dependencies
+
+```bash
+pip install mysql-connector-python
+
+```
+
+### 3. Ensure MySQL Server is Running
+
+Make sure your local MySQL service is running. The script executes `CREATE DATABASE IF NOT EXISTS railway` and initializes the tables automatically upon connection.
+
+### 4. Run the Application
+
 Open the file in Python IDLE or run it via terminal:
 
-Bash
+```bash
 python railway_reservation.py
+
+```
+
 When prompted, enter your MySQL root password to complete the initial setup.
 
-Portal Navigation Flow
-Plaintext
+---
+
+## Portal Navigation Flow
+
+```text
 +=============================================+
 |    WELCOME TO RAILWAY RESERVATION PORTAL    |
 +=============================================+
@@ -121,14 +143,20 @@ Plaintext
 |  [6] Cancel Ticket                          |
 |  [7] Logout                                 |
 +=============================================+
-Limitations
-Plaintext Storage: Passwords are currently stored in plaintext without cryptographic hashing.
 
-Sequential Execution: Designed as a single-user CLI application; does not handle concurrent multi-user database transactions.
+```
 
-Flat Fare Model: Uses a fixed price model (₹500/seat) rather than distance or class-based dynamic fare calculations.
+---
 
-Author
-Vikrant Kumar
+## Limitations
 
-Developed as an academic Computer Science project in Python & MySQL.
+* **Plaintext Storage:** Passwords are currently stored in plaintext without cryptographic hashing.
+* **Sequential Execution:** Designed as a single-user CLI application; does not handle concurrent multi-user database transactions.
+* **Flat Fare Model:** Uses a fixed price model (₹500/seat) rather than distance or class-based dynamic fare calculations.
+
+---
+
+## Author
+
+* **Vikrant Kumar**
+* Developed as an academic Computer Science project in Python & MySQL.
