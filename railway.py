@@ -6,8 +6,16 @@ import random
 
 ######################### DB CONNECTIONS ##############################
 
-passwrd = str(input("Enter Database Password: "))
-myconn = sqltor.MySQLConnection(host="localhost", user="root", password=passwrd)
+#passwrd = str(input("Enter Database Password: "))
+#myconn = sqltor.MySQLConnection(host="localhost", user="root", password=passwrd)
+
+myconn = sqltor.connect(
+    host="mysql-28948da5-heyvikrant24-81ff.h.aivencloud.com",
+    port=10392,
+    user="avnadmin",
+    password="AVNS_wE3bX7na9dYc444Qnr5"
+)
+
 myconn.autocommit = True
 cursor = myconn.cursor()
 
